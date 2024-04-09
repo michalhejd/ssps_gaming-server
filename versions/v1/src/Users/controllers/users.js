@@ -13,8 +13,11 @@ import { generateVerificationCode } from "../services/generateToken.js";
 import Code from "../models/Code.js";
 import { sendEmail } from "../../Email/services/sendEmailWithCode.js";
 import { emailLimiter } from "../../RateLimit/services/ratelimit.js";
+import Steam from "../../Steam/controllers/connection.js"
 
 const router = express.Router();
+
+router.use("/steam", Steam)
 
 router.get("/", async (req, res) => {
     if (!req.user) throw new Error(responseErrors.unauthorized);
@@ -69,6 +72,17 @@ router.get("/@self", async (req, res) => {
     handleSuccess(res, responseSuccess.user_found, user);
 });
 
+router.get("/options", async (req, res) => {
+    if (!req.user) throw new Error(responseErrors.unauthorized);
+    // pass to function which will check if user exists and if user is verified
+    const user = await checkUser(req.user);
+    // check if user is at least admin
+    if (user.role < roles.admin) throw new Error(responseErrors.forbidden);
+    // return roles and verified options
+    handleSuccess(res, responseSuccess.options_found, { roles: roles, verified: [true, false] });
+});
+
+
 router.get("/:id", async (req, res) => {
     if (!req.user) throw new Error(responseErrors.unauthorized);
     // pass to function which will check if user exists and if user is verified
@@ -84,6 +98,7 @@ router.get("/:id", async (req, res) => {
     // return user without his password and __v
     handleSuccess(res, responseSuccess.user_found, userFound);
 });
+
 
 
 

@@ -98,6 +98,9 @@ export function handleSuccess(res, response, data) {
         case responseSuccess.tournament_left:
             res.status(200).json({ meta: { message: "Tournament left", date: Date.now(), status: 200 } });
             return
+        case responseSuccess.options_found:
+            res.status(200).json({ meta: { message: "Options found", date: Date.now(), status: 200 }, data: data });
+            return;
         case responseSuccess.user_created:
             res.status(201).json({ meta: { message: "User successfully created", date: Date.now(), status: 201 } });
             return;

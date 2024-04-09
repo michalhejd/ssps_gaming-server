@@ -13,9 +13,9 @@ router.use(checkToken)
 
 router.use("/", server)
 router.use("/users", users);
-router.use("/games", games);
-router.use("/teams", teams);
-router.use("/tournaments", tournaments)
+//router.use("/games", games);
+//router.use("/teams", teams);
+//router.use("/tournaments", tournaments)
 
 
 

@@ -77,10 +77,14 @@ export function handleErr(err, req, res, next) {
             return res.status(409).json({ meta: { message: "Not enough players", date: Date.now(), status: 409, error: err.message } });
         case responseErrors.cant_update_team_while_in_tournament:
             return res.status(409).json({ meta: { message: "Can`t update team while your team is joined in tournament", date: Date.now(), status: 409, error: err.message } })
+        case responseErrors.already_connected:
+            return res.status(409).json({ meta: { message: "You are already connected", date: Date.now(), status: 409, error: err.message } })
         case responseErrors.can_join_only_one_team:
             return res.status(409).json({ meta: { message: "You can only join one team", date: Date.now(), status: 409, error: err.message } })
         case responseErrors.server_error:
             return res.status(500).json({ meta: { message: "Server error", date: Date.now(), status: 500 } });
+        case responseErrors.something_went_wrong:
+            return res.status(500).json({ meta: { message: "Something went wrong", date: Date.now(), status: 500, error: err.message } });
         case responseErrors.update_password_or_nickname:
             return res.status(400).json({ meta: { message: "You can only update your password or nickname", date: Date.now(), status: 400, error: err.message } });
         default:

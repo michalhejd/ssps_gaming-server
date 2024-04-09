@@ -44,6 +44,8 @@ export const responseErrors = {
     cant_update_team_while_in_tournament: "cant_update_team_while_in_tournament",
     can_join_only_one_team: "can_join_only_one_team",
     not_in_tournament: "not_in_tournament",
+    already_connected: "already_connected",
+    something_went_wrong: "something_went_wrong",
 };
 
 export const responseSuccess = {
@@ -82,4 +84,5 @@ export const responseSuccess = {
     tournament_joined: "tournament_joined",
     tournament_left: "tournament_left",
     steam_connection: "steam_connection",
+    options_found: "options_found",
 };
