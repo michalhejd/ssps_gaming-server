@@ -12,11 +12,13 @@ import { checkEnvironments } from './config/utils/checkEnvironments.js';
 import { defaultRoot } from './config/utils/createDefaultRootUser.js';
 import { globalLimiter } from './versions/v1/src/RateLimit/services/ratelimit.js';
 import { checkVerisons } from './config/utils/checkVersions.js';
+import { checkConnection } from './config/utils/checkConnection.js';
 
 config();
 
 checkVerisons()
 checkEnvironments()
+checkConnection()
 
 mongoose.connect(process.env.DB || "mongodb://localhost:27017/ssps", {
 }).then(() => {

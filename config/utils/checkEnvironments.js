@@ -40,9 +40,6 @@ export async function checkEnvironments(){
     if(!process.env.ORIGIN){
         missingEnvironments.push("ORIGIN");
     }
-    if(!process.env.ORIGIN){
-        missingEnvironments.push("ORIGIN")
-    }
     if(missingEnvironments.length > 0){
         console.log("Missing environments: " + missingEnvironments.join(", "));
         return process.exit(1);
